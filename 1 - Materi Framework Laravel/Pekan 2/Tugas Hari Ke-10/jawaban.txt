@@ -1,0 +1,59 @@
+Soal 1 Membuat Database
+create database myshop;
+
+===============================
+Soal 2 Membuat Table di Dalam Database
+1. use myshop
+2. Table users
+   create table users(
+    -> id int(8) primary key auto_increment,
+    -> name varchar(255),
+    -> email varchar(255),
+    -> password varchar(255)
+    -> );
+3. describe users;
+4. Table Categories
+   create table categories(
+    -> id int(8) primary key auto_increment,
+    -> name varchar(255)
+    -> );
+5. Tabel Items
+   create table items(
+    -> id int(8) primary key auto_increment,
+    -> name varchar(255),
+    -> description varchar(255),
+    -> price int(10),
+    -> stock int(10),
+    -> category_id int(10),
+    -> foreign key(category_id) references categories(id)
+    -> );
+
+===================================
+Soal 3 Memasukkan Data pada Table
+1. Tabel Users
+   insert into users (name, email, password) values ("John Doe", "john@doe.com", "john123"), ("Jane Doe", "jane@doe.com", "jenita123");
+
+2. Tabel Categories
+   INSERT INTO categories (name) VALUES ("gadget"), ("cloth"), ("men"), ("women"), ("branded");
+
+3. Tabel Items
+   insert into items (name, description, price, stock, category_id) values ("Sumsang b50", "hape keren dari merek sumsang", 4000000, 100, 1), ("Uniklooh", "baju keren dari brand ternama", 500000, 50, 2), ("IMHO Watch", "jam tangan anak yang jujur banget", 2000000, 10, 1);
+
+===================================
+Soal 4 Mengambil Data dari Database
+1. Mengambil Data Users
+   select name, email from users;
+
+2. Mengambil data items
+   a. Buatlah sebuah query untuk mendapatkan data item pada table items yang memiliki harga di atas 1000000 (satu juta).
+      select * from items where price > 1000000;
+   b. Buat sebuah query untuk mengambil data item pada table items yang memiliki name serupa atau mirip (like) dengan kata kunci “uniklo”, “watch”, atau “sang” (pilih salah satu saja).
+      select * from items where name like 'unik%';
+
+3. Menampilkan data items join dengan kategori
+    select items.name, items.description, items.price, items.stock, items.category_id, categories.name as kategori 
+ from items inner join categories on items.category_id = categories.id;
+
+===================================
+Soal 5 Mengubah Data dari Database
+UPDATE items set price=2500000 where name="Sumsang b50";
